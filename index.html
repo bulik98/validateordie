@@ -1498,10 +1498,8 @@ body {
             const idea = ideaInput.value.trim();
 
             const templateParams = {
-                to_email: 'blk8722@gmail.com',
                 from_name: name,
                 from_email: email,
-                subject: '🔥 NEW BRUTAL VALIDATION REQUEST',
                 business_idea: idea,
                 message: `NAME: ${name}\nEMAIL: ${email}\nBUSINESS IDEA: ${idea}\n\n---\nSubmitted via Validate or Die brutal validation form`
             };
@@ -1514,6 +1512,7 @@ body {
                     form.reset();
                 }, function(error) {
                     console.error('Email failed to send:', error);
+                    console.error('Error details:', error.text, error.status);
                     showErrorMessage('Failed to send email. Try again or we\'ll assume your idea really does suck.');
                 })
                 .finally(function() {
