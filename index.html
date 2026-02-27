@@ -39,6 +39,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-brutal);
   background-color: var(--white);
@@ -119,6 +123,8 @@ body {
   cursor: pointer;
   transition: all 0.1s ease;
   letter-spacing: 0.5px;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .btn-brutal:hover {
@@ -755,6 +761,136 @@ body {
   text-transform: uppercase;
 }
 
+/* APPLICATION FORM */
+.application-form {
+  padding: var(--space-3xl) var(--space-xl);
+  background-color: var(--gray-dark);
+  color: var(--white);
+}
+
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.form-subtitle {
+  font-size: 1.2rem;
+  color: var(--gray-lighter);
+  font-weight: 500;
+  margin-top: var(--space-md);
+}
+
+.brutal-form {
+  background-color: var(--black);
+  border: 3px solid var(--white);
+  padding: var(--space-2xl);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: var(--space-sm);
+  letter-spacing: 1px;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  background-color: var(--white);
+  color: var(--black);
+  border: 3px solid var(--gray-medium);
+  padding: var(--space-md);
+  font-family: var(--font-brutal);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.1s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--red);
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0px var(--red);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.4;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--gray-light);
+  font-style: italic;
+}
+
+.form-actions {
+  text-align: center;
+}
+
+.btn-form-submit {
+  background-color: var(--red);
+  color: var(--white);
+  border: 3px solid var(--red);
+  padding: var(--space-lg) var(--space-2xl);
+  font-family: var(--font-brutal);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  transition: all 0.1s ease;
+  letter-spacing: 1px;
+  margin-bottom: var(--space-lg);
+}
+
+.btn-form-submit:hover {
+  background-color: var(--white);
+  color: var(--red);
+  border-color: var(--white);
+  transform: translate(-3px, -3px);
+  box-shadow: 4px 4px 0px var(--red);
+}
+
+.form-disclaimer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--gray-lighter);
+}
+
+.disclaimer-warning {
+  color: var(--red);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 /* CTA */
 .cta {
   padding: var(--space-3xl) var(--space-xl);
@@ -886,6 +1022,20 @@ body {
     align-items: flex-start;
     gap: var(--space-sm);
   }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .brutal-form {
+    padding: var(--space-lg);
+  }
+
+  .btn-form-submit {
+    width: 100%;
+    justify-content: center;
+  }
 }
     </style>
 </head>
@@ -902,7 +1052,7 @@ body {
                 <span class="nav-item">COST</span>
                 <span class="nav-item">PROOF</span>
             </div>
-            <button class="btn-brutal">START NOW</button>
+            <a href="#application-form" class="btn-brutal">START NOW</a>
         </div>
     </nav>
 
@@ -925,7 +1075,7 @@ body {
                     <p class="brutal-text">Your idea probably sucks.<br>Find out in 7 days before you waste<br><span class="strike-through">months</span> <span class="red-text">YEARS</span> of your life.</p>
                 </div>
 
-                <a href="#" class="btn-primary-brutal">
+                <a href="#application-form" class="btn-primary-brutal">
                     <span>VALIDATE MY IDEA</span>
                     <span>→</span>
                 </a>
@@ -1103,7 +1253,7 @@ body {
                         <li class="feature-item">→ Lifetime updates</li>
                     </ul>
 
-                    <a href="#" class="btn-card">GET KIT →</a>
+                    <a href="#application-form" class="btn-card">GET KIT →</a>
                 </div>
 
                 <div class="pricing-card featured">
@@ -1124,7 +1274,7 @@ body {
                         <li class="feature-item">→ 30 days of support</li>
                     </ul>
 
-                    <a href="#" class="btn-card btn-featured">START NOW →</a>
+                    <a href="#application-form" class="btn-card btn-featured">START NOW →</a>
                 </div>
 
                 <div class="pricing-card">
@@ -1145,7 +1295,7 @@ body {
                         <li class="feature-item">→ 90 days of support</li>
                     </ul>
 
-                    <a href="#" class="btn-card">GET QUOTE →</a>
+                    <a href="#application-form" class="btn-card">GET QUOTE →</a>
                 </div>
             </div>
         </div>
@@ -1207,6 +1357,70 @@ body {
         </div>
     </section>
 
+    <section class="application-form" id="application-form">
+        <div class="form-container">
+            <div class="form-header">
+                <h2 class="section-title-brutal">
+                    <span class="bracket">[</span>
+                    APPLY FOR VALIDATION
+                    <span class="bracket">]</span>
+                </h2>
+                <p class="form-subtitle">Submit your idea for brutal feedback. We'll tell you if it sucks.</p>
+            </div>
+
+            <form class="brutal-form" id="validationForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name" class="form-label">YOUR NAME</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            class="form-input"
+                            placeholder="Enter your full name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">YOUR EMAIL</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="form-input"
+                            placeholder="your@email.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="idea" class="form-label">YOUR IDEA (BE SPECIFIC)</label>
+                        <textarea
+                            id="idea"
+                            name="idea"
+                            class="form-textarea"
+                            placeholder="Describe your business idea in detail. What problem does it solve? Who's your target market? Don't be vague."
+                            rows="4"
+                            required
+                        ></textarea>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-form-submit">
+                        <span>SUBMIT FOR BRUTAL REVIEW</span>
+                        <span>→</span>
+                    </button>
+                    <div class="form-disclaimer">
+                        <span class="disclaimer-text">We'll respond with honest feedback within 24 hours.</span>
+                        <span class="disclaimer-warning">Warning: We don't sugarcoat anything.</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
     <section class="cta">
         <div class="cta-container">
             <h2 class="cta-title">
@@ -1219,7 +1433,7 @@ body {
                 <p>Your future self will thank you.</p>
             </div>
 
-            <a href="#" class="btn-cta-primary">
+            <a href="#application-form" class="btn-cta-primary">
                 <span>VALIDATE MY IDEA NOW</span>
                 <span>→</span>
             </a>
@@ -1235,5 +1449,121 @@ body {
             </div>
         </div>
     </footer>
+
+    <script>
+        // Form validation and submission handling
+        document.getElementById('validationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form elements
+            const form = e.target;
+            const submitBtn = form.querySelector('.btn-form-submit');
+            const nameInput = form.querySelector('#name');
+            const emailInput = form.querySelector('#email');
+            const ideaInput = form.querySelector('#idea');
+
+            // Basic validation
+            if (!nameInput.value.trim()) {
+                showError(nameInput, 'Name is required, obviously.');
+                return;
+            }
+
+            if (!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
+                showError(emailInput, 'Valid email required. We need to roast you properly.');
+                return;
+            }
+
+            if (!ideaInput.value.trim() || ideaInput.value.trim().length < 20) {
+                showError(ideaInput, 'Be more specific. "App idea" isn\'t validation-worthy.');
+                return;
+            }
+
+            // Clear any existing errors
+            clearErrors();
+
+            // Show loading state
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span>SUBMITTING...</span>';
+            submitBtn.disabled = true;
+
+            // Simulate form submission
+            setTimeout(function() {
+                // Show success message
+                showSuccessMessage();
+                form.reset();
+
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function showError(input, message) {
+            // Clear existing errors
+            clearErrors();
+
+            // Create error element
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'form-error';
+            errorDiv.innerHTML = `<span style="color: var(--red); font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">${message}</span>`;
+
+            // Insert error after input
+            input.parentNode.insertBefore(errorDiv, input.nextSibling);
+
+            // Style the input
+            input.style.borderColor = 'var(--red)';
+            input.focus();
+        }
+
+        function clearErrors() {
+            // Remove all error messages
+            const errors = document.querySelectorAll('.form-error');
+            errors.forEach(error => error.remove());
+
+            // Reset input styles
+            const inputs = document.querySelectorAll('.form-input, .form-textarea');
+            inputs.forEach(input => {
+                input.style.borderColor = '';
+            });
+        }
+
+        function showSuccessMessage() {
+            const form = document.getElementById('validationForm');
+            const successDiv = document.createElement('div');
+            successDiv.className = 'form-success';
+            successDiv.innerHTML = `
+                <div style="background-color: var(--green); color: var(--black); padding: var(--space-lg); text-align: center; font-family: var(--font-mono); font-weight: 700; text-transform: uppercase; margin-bottom: var(--space-lg);">
+                    <span>SUBMISSION RECEIVED! CHECK YOUR EMAIL FOR BRUTAL FEEDBACK.</span>
+                </div>
+            `;
+
+            form.parentNode.insertBefore(successDiv, form);
+
+            // Remove success message after 5 seconds
+            setTimeout(function() {
+                successDiv.remove();
+            }, 5000);
+
+            // Scroll to success message
+            successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Add real-time validation feedback
+        document.querySelectorAll('.form-input, .form-textarea').forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.value.trim()) {
+                    clearErrors();
+                }
+            });
+        });
+
+        // Terminal animation (existing code from script.js can be embedded here if needed)
+        // For now, keeping it simple and focused on form functionality
+    </script>
 </body>
 </html>
