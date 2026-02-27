@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
 :root {
   --black: #000000;
@@ -1453,6 +1454,9 @@ body {
     </footer>
 
     <script>
+        // Initialize EmailJS
+        emailjs.init("udO5gidkFQr_iRPcu");
+
         // Form validation and submission handling
         document.getElementById('validationForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1488,33 +1492,35 @@ body {
             submitBtn.innerHTML = '<span>SUBMITTING...</span>';
             submitBtn.disabled = true;
 
-            // Create mailto link with form data
+            // Send email via EmailJS
             const name = nameInput.value.trim();
             const email = emailInput.value.trim();
             const idea = ideaInput.value.trim();
 
-            const subject = encodeURIComponent('🔥 NEW BRUTAL VALIDATION REQUEST');
-            const body = encodeURIComponent(`
-NAME: ${name}
-EMAIL: ${email}
-BUSINESS IDEA: ${idea}
+            const templateParams = {
+                to_email: 'blk8722@gmail.com',
+                from_name: name,
+                from_email: email,
+                subject: '🔥 NEW BRUTAL VALIDATION REQUEST',
+                business_idea: idea,
+                message: `NAME: ${name}\nEMAIL: ${email}\nBUSINESS IDEA: ${idea}\n\n---\nSubmitted via Validate or Die brutal validation form`
+            };
 
----
-Submitted via Validate or Die brutal validation form
-            `);
-
-            const mailtoLink = `mailto:blk8722@gmail.com?subject=${subject}&body=${body}`;
-
-            // Open mailto link
-            window.location.href = mailtoLink;
-
-            // Show success message
-            showSuccessMessage();
-            form.reset();
-
-            // Reset button
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
+            // Send email using EmailJS
+            emailjs.send('service_c26dkit', 'template_a1d3cxb', templateParams)
+                .then(function(response) {
+                    console.log('Email sent successfully!', response.status, response.text);
+                    showSuccessMessage();
+                    form.reset();
+                }, function(error) {
+                    console.error('Email failed to send:', error);
+                    showErrorMessage('Failed to send email. Try again or we\'ll assume your idea really does suck.');
+                })
+                .finally(function() {
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                });
         });
 
         function isValidEmail(email) {
