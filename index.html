@@ -1368,11 +1368,8 @@ body {
                 <p class="form-subtitle">Submit your idea for brutal feedback. We'll tell you if it sucks.</p>
             </div>
 
-            <form class="brutal-form" id="validationForm" action="https://formsubmit.co/blk8722@gmail.com" method="POST">
-                <!-- FormSubmit.co configuration -->
-                <input type="hidden" name="_subject" value="🔥 NEW BRUTAL VALIDATION REQUEST">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
+            <form class="brutal-form" id="validationForm">
+                <!-- JavaScript form handling -->
 
                 <div class="form-grid">
                     <div class="form-group">
@@ -1491,33 +1488,33 @@ body {
             submitBtn.innerHTML = '<span>SUBMITTING...</span>';
             submitBtn.disabled = true;
 
-            // Submit form data to FormSubmit
-            const formData = new FormData(form);
+            // Create mailto link with form data
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const idea = ideaInput.value.trim();
 
-            fetch(form.action, {
-                method: 'POST',
-                body: formData
-            }).then(function(response) {
-                if (response.ok) {
-                    // Show success message
-                    showSuccessMessage();
-                    form.reset();
-                } else {
-                    // Handle error
-                    showErrorMessage('Submission failed. Try again or we\'ll assume your idea really does suck.');
-                }
+            const subject = encodeURIComponent('🔥 NEW BRUTAL VALIDATION REQUEST');
+            const body = encodeURIComponent(`
+NAME: ${name}
+EMAIL: ${email}
+BUSINESS IDEA: ${idea}
 
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }).catch(function(error) {
-                // Handle network error
-                showErrorMessage('Network error. Check your connection and try again.');
+---
+Submitted via Validate or Die brutal validation form
+            `);
 
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            });
+            const mailtoLink = `mailto:blk8722@gmail.com?subject=${subject}&body=${body}`;
+
+            // Open mailto link
+            window.location.href = mailtoLink;
+
+            // Show success message
+            showSuccessMessage();
+            form.reset();
+
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
         });
 
         function isValidEmail(email) {
