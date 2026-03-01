@@ -1508,8 +1508,8 @@ body {
             emailjs.send('service_qbulovn', 'template_5uywdql', templateParams)
                 .then(function(response) {
                     console.log('Email sent successfully!', response.status, response.text);
-                    showSuccessMessage();
-                    form.reset();
+                    // Redirect to order page instead of showing success message
+                    window.location.href = './order.html';
                 }, function(error) {
                     console.error('Email failed to send:', error);
                     console.error('Error details:', error.text, error.status);
