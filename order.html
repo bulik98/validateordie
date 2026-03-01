@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request Received | VALIDATE OR DIE</title>
     <meta name="description" content="Your brutal validation request has been received. We'll tear your idea apart within 24 hours.">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+    <!-- End Google Tag Manager -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -315,6 +323,11 @@ body {
         </div>
     </nav>
 
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <section class="order-section">
         <div class="order-container">
             <div class="status-indicator">REQUEST RECEIVED</div>
@@ -383,11 +396,27 @@ body {
     </section>
 
     <script>
-        // Google Analytics / Google Ads conversion tracking can go here
-        // gtag('event', 'conversion', {'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL'});
+        // GTM Conversion Tracking
+        window.dataLayer = window.dataLayer || [];
 
-        // Track page view for conversion
-        console.log('Order page loaded - conversion tracked');
+        // Track form submission conversion
+        dataLayer.push({
+            'event': 'form_submission',
+            'event_category': 'Form',
+            'event_action': 'Submit',
+            'event_label': 'Validation Request',
+            'value': 97,
+            'currency': 'USD'
+        });
+
+        // Track page view
+        dataLayer.push({
+            'event': 'page_view',
+            'page_title': 'Order Confirmation',
+            'page_location': window.location.href
+        });
+
+        console.log('GTM conversion events triggered');
     </script>
 </body>
 </html>
