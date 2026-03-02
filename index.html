@@ -1752,11 +1752,17 @@ body {
             const email = emailInput.value.trim();
             const idea = ideaInput.value.trim();
 
+            // Detect test submissions
+            const isTest = email.includes('test') || email.includes('example') ||
+                          name.toLowerCase().includes('test') ||
+                          idea.toLowerCase().includes('test');
+
             const templateParams = {
                 from_name: name,
                 from_email: email,
                 business_idea: idea,
-                message: `NAME: ${name}\nEMAIL: ${email}\nBUSINESS IDEA: ${idea}\n\n---\nSubmitted via Validate or Die brutal validation form`
+                submission_type: isTest ? '[TEST SUBMISSION]' : '[REAL SUBMISSION]',
+                message: `${isTest ? '🧪 TEST SUBMISSION 🧪' : '🔥 NEW VALIDATION REQUEST 🔥'}\n\nNAME: ${name}\nEMAIL: ${email}\nBUSINESS IDEA: ${idea}\n\n---\nSubmitted via Validate or Die brutal validation form`
             };
 
             // Send email using EmailJS
