@@ -41,7 +41,7 @@ Validate or Die is a conversion-optimized landing page designed to capture leads
 EmailJS (service_qbulovn)
 ├── Template: template_5uywdql
 ├── Public Key: udO5gidkFQr_iRPcu
-└── Target Email: blk8722@gmail.com
+└── Target Email: validateordie@gmail.com
 
 Google Ads (AW-17981733480)
 ├── Conversion Tracking
@@ -210,7 +210,7 @@ GitHub Actions Workflow:
 EMAILJS_SERVICE_ID=service_qbulovn
 EMAILJS_TEMPLATE_ID=template_5uywdql
 EMAILJS_PUBLIC_KEY=udO5gidkFQr_iRPcu
-TARGET_EMAIL=blk8722@gmail.com
+TARGET_EMAIL=validateordie@gmail.com
 
 # Google Ads Configuration
 GTAG_ID=AW-17981733480
@@ -332,7 +332,7 @@ Technical Metrics:
 
 ### **v1.0.0 (Current) - March 2026**
 - ✅ Complete brutal landing page with conversion optimization
-- ✅ EmailJS integration with blk8722@gmail.com delivery
+- ✅ EmailJS integration with validateordie@gmail.com delivery
 - ✅ Google Ads conversion tracking (AW-17981733480)
 - ✅ Responsive design with mobile-first approach
 - ✅ Comprehensive test suite (Playwright E2E testing)

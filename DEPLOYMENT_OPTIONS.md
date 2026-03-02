@@ -109,7 +109,7 @@ The test suite was causing issues. To fix:
 ## Current Status
 
 ✅ **Landing page code** - Complete and working
-✅ **EmailJS integration** - Functional (sends to blk8722@gmail.com)
+✅ **EmailJS integration** - Functional (sends to validateordie@gmail.com)
 ✅ **Google Ads tracking** - Configured
 ✅ **Mobile optimization** - Large hero text, interactive logo
 ✅ **Complete documentation** - PRD, README, test suite
