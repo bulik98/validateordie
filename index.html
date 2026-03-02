@@ -984,6 +984,60 @@ body {
   text-transform: uppercase;
 }
 
+/* CONSENT CHECKBOX STYLES */
+.consent-checkbox {
+  margin-bottom: var(--space-lg);
+}
+.consent-input {
+  display: none;
+}
+.consent-label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--white);
+  line-height: 1.4;
+  cursor: pointer;
+  text-transform: none;
+  font-weight: 400;
+}
+.checkbox-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--red);
+  background-color: transparent;
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all 0.2s ease;
+}
+.consent-input:checked + .consent-label .checkbox-custom {
+  background-color: var(--red);
+  border-color: var(--red);
+}
+.consent-input:checked + .consent-label .checkbox-custom::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: bold;
+}
+.legal-link {
+  color: var(--red);
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+.legal-link:hover {
+  color: var(--yellow);
+}
+
 /* CTA */
 .cta {
   padding: var(--space-3xl) var(--space-xl);
@@ -1068,6 +1122,26 @@ body {
   margin-bottom: var(--space-lg);
 }
 
+.footer-legal {
+  margin-bottom: var(--space-md);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-align: center;
+}
+.legal-footer-link {
+  color: var(--gray-lighter);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.legal-footer-link:hover {
+  color: var(--red);
+}
+.separator {
+  margin: 0 var(--space-md);
+  color: var(--gray-light);
+}
 .footer-copy {
   color: var(--gray-light);
   font-family: var(--font-mono);
@@ -1564,6 +1638,22 @@ body {
                     </div>
                 </div>
 
+                <div class="form-group full-width">
+                    <div class="consent-checkbox">
+                        <input
+                            type="checkbox"
+                            id="consent"
+                            name="consent"
+                            class="consent-input"
+                            required
+                        >
+                        <label for="consent" class="consent-label">
+                            <span class="checkbox-custom"></span>
+                            I agree to the <a href="/terms.html" target="_blank" class="legal-link">Terms of Service</a> and <a href="/privacy.html" target="_blank" class="legal-link">Privacy Policy</a>. I consent to the processing of my personal data for business validation purposes.
+                        </label>
+                    </div>
+                </div>
+
                 <div class="form-actions">
                     <button type="submit" class="btn-form-submit">
                         <span>SUBMIT FOR BRUTAL REVIEW</span>
@@ -1601,6 +1691,11 @@ body {
         <div class="footer-container">
             <div class="footer-logo">[VALIDATE]</div>
             <p class="footer-tagline">Helping founders avoid expensive mistakes since 2024</p>
+            <div class="footer-legal">
+                <a href="/terms.html" class="legal-footer-link">Terms of Service</a>
+                <span class="separator">|</span>
+                <a href="/privacy.html" class="legal-footer-link">Privacy Policy</a>
+            </div>
             <div class="footer-copy">
                 © 2024 VALIDATE OR DIE. ALL RIGHTS RESERVED.
             </div>
@@ -1621,6 +1716,7 @@ body {
             const nameInput = form.querySelector('#name');
             const emailInput = form.querySelector('#email');
             const ideaInput = form.querySelector('#idea');
+            const consentInput = form.querySelector('#consent');
 
             // Basic validation
             if (!nameInput.value.trim()) {
@@ -1635,6 +1731,11 @@ body {
 
             if (!ideaInput.value.trim() || ideaInput.value.trim().length < 20) {
                 showError(ideaInput, 'Be more specific. "App idea" isn\'t validation-worthy.');
+                return;
+            }
+
+            if (!consentInput.checked) {
+                showError(consentInput, 'You must agree to our terms. No exceptions.');
                 return;
             }
 
