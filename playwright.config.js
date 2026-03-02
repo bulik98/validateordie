@@ -39,7 +39,7 @@ module.exports = defineConfig({
   ],
 
   webServer: {
-    command: 'python3 -m http.server 3000',
+    command: 'npx http-server -p 3000 -s',
     port: 3000,
     reuseExistingServer: !process.env.CI,
   },
