@@ -7,12 +7,17 @@
     "test:e2e": "playwright test",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "install:browsers": "npx playwright install"
+    "install:browsers": "npx playwright install",
+    "ci": "npm ci && npx playwright install --with-deps",
+    "test:ci": "npx playwright test --reporter=github"
   },
   "devDependencies": {
     "@playwright/test": "^1.40.0",
     "@types/jest": "^29.5.0",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
