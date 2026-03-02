@@ -142,6 +142,24 @@ body {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: -0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.nav-logo:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.nav-logo:hover .logo-brackets {
+  color: var(--yellow);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
 }
 
 .logo-brackets {
@@ -1723,6 +1741,14 @@ body {
                 if (this.value.trim()) {
                     clearErrors();
                 }
+            });
+        });
+
+        // Logo click to scroll to top
+        document.querySelector('.nav-logo').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         });
 
