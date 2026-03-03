@@ -1181,13 +1181,14 @@ body {
   }
   .nav-container {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
   }
   .nav-item {
     font-size: 0.9rem;
     padding: var(--space-sm) 0;
     width: 100%;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid transparent;
   }
 
@@ -1278,6 +1279,51 @@ body {
     font-size: 0.8rem !important;
     padding: var(--space-lg) !important;
     margin: var(--space-lg) var(--space-sm) !important;
+  }
+
+  /* Mobile button improvements */
+  .btn-brutal {
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.8rem;
+  }
+
+  /* Mobile terminal window */
+  .terminal-window {
+    margin-bottom: var(--space-xl);
+  }
+
+  /* Mobile pricing cards */
+  .pricing-card {
+    margin-bottom: var(--space-lg);
+  }
+
+  /* Mobile form improvements */
+  .form-input,
+  .form-textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: var(--space-md);
+  }
+
+  /* Mobile footer */
+  .footer-container {
+    padding: var(--space-lg);
+    text-align: center;
+  }
+
+  .legal-footer-link {
+    display: inline-block;
+    margin: var(--space-xs) var(--space-sm);
+  }
+
+  /* Mobile sections spacing */
+  .problem,
+  .method,
+  .pricing,
+  .testimonials,
+  .application-form,
+  .cta {
+    padding-left: var(--space-lg);
+    padding-right: var(--space-lg);
   }
 }
     </style>
