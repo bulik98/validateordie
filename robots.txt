@@ -1,0 +1,32 @@
+User-agent: *
+Allow: /
+
+# Allow all search engines to crawl the site
+Allow: /index.html
+Allow: /order.html
+Allow: /terms.html
+Allow: /privacy.html
+
+# Disallow certain file types and directories
+Disallow: /*.git
+Disallow: /.github/
+Disallow: /node_modules/
+Disallow: /tests/
+Disallow: /*.json
+Disallow: /*.md
+Disallow: /*.sh
+
+# Allow important assets
+Allow: /*.css
+Allow: /*.js
+Allow: /*.ico
+Allow: /*.svg
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+
+# Sitemap location
+Sitemap: https://validateordie.online/sitemap.xml
+
+# Crawl delay (optional - 1 second between requests)
+Crawl-delay: 1
