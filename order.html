@@ -412,21 +412,86 @@ body {
     </footer>
 
     <script>
-        // Google Ads Conversion Tracking with gtag
+        // Parse URL parameters for package data
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedPackage = urlParams.get('package') || 'full_validation';
+        const packagePrice = urlParams.get('price') || '$497';
+        const packageName = urlParams.get('name') || 'FULL VALIDATION';
+
+        // Get package details helper function
+        function getPackageDetails(packageValue) {
+            const packages = {
+                'validation_report': {
+                    name: 'VALIDATION REPORT',
+                    price: '$97',
+                    value: 97
+                },
+                'full_validation': {
+                    name: 'FULL VALIDATION',
+                    price: '$497',
+                    value: 497
+                },
+                'mvp_validation': {
+                    name: 'MVP + VALIDATION',
+                    price: 'CUSTOM PRICE',
+                    value: 0
+                }
+            };
+            return packages[packageValue] || packages['full_validation'];
+        }
+
+        const packageDetails = getPackageDetails(selectedPackage);
+
+        // Google Ads Conversion Tracking with package-specific values
         gtag('event', 'conversion', {
-            'send_to': 'AW-17981733480',
-            'value': 97,
+            'send_to': 'AW-17981733480/order_confirmation',
+            'value': packageDetails.value,
             'currency': 'USD',
-            'transaction_id': 'validation_' + Date.now()
+            'transaction_id': `validation_${Date.now()}_${selectedPackage}`,
+            'custom_parameters': {
+                'package_type': selectedPackage,
+                'package_name': packageDetails.name
+            }
         });
 
-        // Track page view
+        // Enhanced page view tracking with package data
         gtag('event', 'page_view', {
-            'page_title': 'Order Confirmation',
-            'page_location': window.location.href
+            'page_title': `Order Confirmation - ${packageDetails.name}`,
+            'page_location': window.location.href,
+            'custom_parameters': {
+                'conversion_package': selectedPackage,
+                'conversion_value': packageDetails.value,
+                'package_name': packageDetails.name
+            }
         });
 
-        console.log('Google Ads conversion tracking triggered');
+        // Track purchase event for Google Analytics
+        gtag('event', 'purchase', {
+            'transaction_id': `order_${Date.now()}_${selectedPackage}`,
+            'value': packageDetails.value,
+            'currency': 'USD',
+            'items': [{
+                'item_id': selectedPackage,
+                'item_name': packageDetails.name,
+                'category': 'validation_service',
+                'quantity': 1,
+                'price': packageDetails.value
+            }]
+        });
+
+        // Track conversion by package type for segmentation
+        gtag('event', 'conversion_by_package', {
+            'package_type': selectedPackage,
+            'package_tier': packageDetails.value >= 400 ? 'premium' : packageDetails.value > 0 ? 'standard' : 'custom',
+            'conversion_value': packageDetails.value,
+            'currency': 'USD'
+        });
+
+        console.log('Enhanced Google Analytics tracking triggered:', {
+            package: selectedPackage,
+            value: packageDetails.value,
+            name: packageDetails.name
+        });
     </script>
 </body>
 </html>
