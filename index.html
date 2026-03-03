@@ -1185,17 +1185,9 @@ body {
     position: relative;
   }
 
+  /* Hide default navigation on mobile */
   .nav-menu {
     display: none !important; /* Force hidden by default on mobile */
-  }
-
-  .mobile-menu-toggle {
-    display: block !important; /* Force visible on mobile */
-  }
-
-  .nav-menu.active {
-    display: flex;
-    flex-direction: column;
     position: absolute;
     top: 100%;
     left: 0;
@@ -1203,8 +1195,37 @@ body {
     background-color: var(--white);
     border-top: 1px solid var(--gray-medium);
     padding: var(--space-md);
+    flex-direction: column;
     gap: var(--space-md);
     z-index: 999;
+  }
+
+  /* Show navigation when active */
+  .nav-menu.active {
+    display: flex !important;
+  }
+
+  /* Show hamburger button on mobile */
+  .mobile-menu-toggle {
+    display: block !important;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--black);
+    cursor: pointer;
+    padding: var(--space-xs);
+    order: 1; /* Place between logo and CTA button */
+  }
+
+  .nav-logo {
+    order: 0;
+  }
+
+  .btn-brutal {
+    order: 2;
+    margin-top: 0;
+    padding: var(--space-sm) var(--space-lg);
+    font-size: 0.7rem;
   }
 
   .nav-item {
@@ -1217,22 +1238,6 @@ body {
 
   .nav-item:last-child {
     border-bottom: none;
-  }
-
-  .mobile-menu-toggle {
-    display: block;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--black);
-    cursor: pointer;
-    padding: var(--space-xs);
-  }
-
-  .btn-brutal {
-    margin-top: var(--space-sm);
-    padding: var(--space-sm) var(--space-lg);
-    font-size: 0.7rem;
   }
 
   .hero-container {
