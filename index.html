@@ -1053,6 +1053,105 @@ body {
   color: var(--yellow);
 }
 
+/* PACKAGE SELECTION STYLES */
+.package-selection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+.package-option {
+  position: relative;
+}
+
+.package-radio {
+  display: none;
+}
+
+.package-label {
+  display: block;
+  background-color: var(--white);
+  border: 3px solid var(--gray-medium);
+  padding: var(--space-lg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-brutal);
+}
+
+.package-label:hover {
+  border-color: var(--red);
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0px var(--red);
+}
+
+.package-radio:checked + .package-label {
+  border-color: var(--red);
+  background-color: var(--red);
+  color: var(--white);
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0px var(--black);
+}
+
+.package-option.featured .package-radio:checked + .package-label {
+  background-color: var(--red);
+  border-color: var(--red);
+}
+
+.package-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.package-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.package-price {
+  font-size: 1.5rem;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  color: var(--red);
+}
+
+.package-radio:checked + .package-label .package-price {
+  color: var(--white);
+}
+
+.package-badge {
+  background-color: var(--green);
+  color: var(--black);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-left: var(--space-sm);
+}
+
+.package-radio:checked + .package-label .package-badge {
+  background-color: var(--yellow);
+  color: var(--black);
+}
+
+.package-desc {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--gray-light);
+  line-height: 1.3;
+}
+
+.package-radio:checked + .package-label .package-desc {
+  color: var(--white);
+}
+
 /* CTA */
 .cta {
   padding: var(--space-3xl) var(--space-xl);
@@ -1423,6 +1522,34 @@ body {
   /* Mobile footer improvements */
   .footer {
     padding: var(--space-2xl) var(--space-md) var(--space-lg);
+  }
+
+  /* Mobile package selection */
+  .package-label {
+    padding: var(--space-md);
+  }
+
+  .package-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .package-name {
+    font-size: 1rem;
+  }
+
+  .package-price {
+    font-size: 1.3rem;
+  }
+
+  .package-desc {
+    font-size: 0.8rem;
+  }
+
+  .package-badge {
+    margin-left: 0;
+    margin-top: var(--space-xs);
   }
 }
     </style>
@@ -1810,6 +1937,45 @@ body {
                             required
                         ></textarea>
                     </div>
+
+                    <div class="form-group full-width">
+                        <label for="package" class="form-label">CHOOSE YOUR VALIDATION PACKAGE</label>
+                        <div class="package-selection">
+                            <div class="package-option">
+                                <input type="radio" id="validation-report" name="package" value="validation_report" class="package-radio">
+                                <label for="validation-report" class="package-label">
+                                    <div class="package-info">
+                                        <span class="package-name">VALIDATION REPORT</span>
+                                        <span class="package-price">$97</span>
+                                    </div>
+                                    <span class="package-desc">Brutal analysis + Go/No-go decision</span>
+                                </label>
+                            </div>
+
+                            <div class="package-option featured">
+                                <input type="radio" id="full-validation" name="package" value="full_validation" class="package-radio" checked>
+                                <label for="full-validation" class="package-label">
+                                    <div class="package-info">
+                                        <span class="package-name">FULL VALIDATION</span>
+                                        <span class="package-price">$497</span>
+                                        <span class="package-badge">RECOMMENDED</span>
+                                    </div>
+                                    <span class="package-desc">Report + Landing page + Traffic testing</span>
+                                </label>
+                            </div>
+
+                            <div class="package-option">
+                                <input type="radio" id="mvp-validation" name="package" value="mvp_validation" class="package-radio">
+                                <label for="mvp-validation" class="package-label">
+                                    <div class="package-info">
+                                        <span class="package-name">MVP + VALIDATION</span>
+                                        <span class="package-price">CUSTOM</span>
+                                    </div>
+                                    <span class="package-desc">Full package + MVP development</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group full-width">
@@ -1892,6 +2058,7 @@ body {
             const emailInput = form.querySelector('#email');
             const ideaInput = form.querySelector('#idea');
             const consentInput = form.querySelector('#consent');
+            const packageInput = form.querySelector('input[name="package"]:checked');
 
             // Basic validation
             if (!nameInput.value.trim()) {
@@ -1914,6 +2081,11 @@ body {
                 return;
             }
 
+            if (!packageInput) {
+                showError(document.querySelector('.package-selection'), 'Select a validation package. Pick your poison.');
+                return;
+            }
+
             // Clear any existing errors
             clearErrors();
 
@@ -1922,10 +2094,14 @@ body {
             submitBtn.innerHTML = '<span>SUBMITTING...</span>';
             submitBtn.disabled = true;
 
-            // Send email via EmailJS
+            // Get form data
             const name = nameInput.value.trim();
             const email = emailInput.value.trim();
             const idea = ideaInput.value.trim();
+            const selectedPackage = packageInput.value;
+
+            // Get package details
+            const packageDetails = getPackageDetails(selectedPackage);
 
             // Detect test submissions
             const isTest = email.includes('test') || email.includes('example') ||
@@ -1936,16 +2112,46 @@ body {
                 from_name: name,
                 from_email: email,
                 business_idea: idea,
+                selected_package: packageDetails.name,
+                package_price: packageDetails.price,
+                package_value: packageDetails.value,
                 submission_type: isTest ? '[TEST SUBMISSION]' : '[REAL SUBMISSION]',
-                message: `${isTest ? '🧪 TEST SUBMISSION 🧪' : '🔥 NEW VALIDATION REQUEST 🔥'}\n\nNAME: ${name}\nEMAIL: ${email}\nBUSINESS IDEA: ${idea}\n\n---\nSubmitted via Validate or Die brutal validation form`
+                message: `${isTest ? '🧪 TEST SUBMISSION 🧪' : '🔥 NEW VALIDATION REQUEST 🔥'}\n\n📋 SUBMISSION DETAILS:\nNAME: ${name}\nEMAIL: ${email}\nPACKAGE: ${packageDetails.name} (${packageDetails.price})\nVALUE: ${packageDetails.value}\n\n💡 BUSINESS IDEA:\n${idea}\n\n---\nSubmitted via Validate or Die brutal validation form`
             };
 
             // Send email using EmailJS
             emailjs.send('service_qbulovn', 'template_5uywdql', templateParams)
                 .then(function(response) {
                     console.log('Email sent successfully!', response.status, response.text);
-                    // Redirect to order page instead of showing success message
-                    window.location.href = './order.html';
+
+                    // Track conversion in Google Ads with package-specific value
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-17981733480/form_submission',
+                        'value': packageDetails.value,
+                        'currency': 'USD',
+                        'transaction_id': `${Date.now()}_${selectedPackage}`, // Unique ID
+                        'custom_parameters': {
+                            'package_type': selectedPackage,
+                            'package_name': packageDetails.name
+                        }
+                    });
+
+                    // Track in Google Analytics
+                    gtag('event', 'form_submission', {
+                        'package_name': selectedPackage,
+                        'package_price': packageDetails.value,
+                        'currency': 'USD',
+                        'value': packageDetails.value,
+                        'method': 'email'
+                    });
+
+                    // Redirect to order page with package info
+                    const params = new URLSearchParams({
+                        package: selectedPackage,
+                        price: packageDetails.price,
+                        name: packageDetails.name
+                    });
+                    window.location.href = `./order.html?${params.toString()}`;
                 }, function(error) {
                     console.error('Email failed to send:', error);
                     console.error('Error details:', error.text, error.status);
@@ -2042,6 +2248,62 @@ body {
                 }
             });
         });
+
+        // Package details helper function
+        function getPackageDetails(packageValue) {
+            const packages = {
+                'validation_report': {
+                    name: 'VALIDATION REPORT',
+                    price: '$97',
+                    value: 97
+                },
+                'full_validation': {
+                    name: 'FULL VALIDATION',
+                    price: '$497',
+                    value: 497
+                },
+                'mvp_validation': {
+                    name: 'MVP + VALIDATION',
+                    price: 'CUSTOM PRICE',
+                    value: 0
+                }
+            };
+            return packages[packageValue] || packages['full_validation'];
+        }
+
+        // Update submit button text based on selected package
+        function updateSubmitButton() {
+            const selectedPackage = document.querySelector('input[name="package"]:checked');
+            const submitBtn = document.querySelector('.btn-form-submit span:first-child');
+
+            if (selectedPackage && submitBtn) {
+                const packageDetails = getPackageDetails(selectedPackage.value);
+                if (packageDetails.value > 0) {
+                    submitBtn.textContent = `SUBMIT FOR BRUTAL REVIEW → ${packageDetails.price}`;
+                } else {
+                    submitBtn.textContent = 'SUBMIT FOR BRUTAL REVIEW → GET QUOTE';
+                }
+            }
+        }
+
+        // Listen for package selection changes
+        document.querySelectorAll('input[name="package"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                updateSubmitButton();
+
+                // Track package selection in Google Analytics
+                const packageDetails = getPackageDetails(this.value);
+                gtag('event', 'package_selected', {
+                    'package_name': this.value,
+                    'package_price': packageDetails.value,
+                    'currency': 'USD',
+                    'value': packageDetails.value
+                });
+            });
+        });
+
+        // Initialize submit button text
+        updateSubmitButton();
 
         // Logo click to scroll to top
         document.querySelector('.nav-logo').addEventListener('click', function() {
