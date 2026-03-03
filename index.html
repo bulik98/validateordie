@@ -1186,7 +1186,11 @@ body {
   }
 
   .nav-menu {
-    display: none; /* Hidden by default on mobile */
+    display: none !important; /* Force hidden by default on mobile */
+  }
+
+  .mobile-menu-toggle {
+    display: block !important; /* Force visible on mobile */
   }
 
   .nav-menu.active {
