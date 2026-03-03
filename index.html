@@ -1156,6 +1156,43 @@ body {
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
+  /* Navigation improvements */
+  .navbar {
+    padding: var(--space-sm) 0;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 var(--space-md);
+    gap: var(--space-md);
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: auto;
+  }
+
+  .nav-item {
+    font-size: 0.8rem;
+    padding: var(--space-xs) var(--space-sm);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .btn-brutal {
+    margin-top: var(--space-sm);
+    padding: var(--space-sm) var(--space-lg);
+    font-size: 0.7rem;
+  }
+
   .hero-container {
     flex-direction: column;
     gap: var(--space-2xl);
@@ -1168,28 +1205,6 @@ body {
   .hero-left,
   .hero-right {
     max-width: 100%;
-  }
-
-  .nav-menu {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    margin-top: var(--space-md);
-    padding: var(--space-md) 0;
-    border-top: 1px solid var(--gray-medium);
-    width: 100%;
-  }
-  .nav-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .nav-item {
-    font-size: 0.9rem;
-    padding: var(--space-sm) 0;
-    width: 100%;
-    text-align: center;
-    border-bottom: 1px solid transparent;
   }
 
   .hero-title {
@@ -1222,20 +1237,35 @@ body {
     justify-content: center;
   }
 
-  .consent-label {
-    font-size: 0.7rem;
-    line-height: 1.3;
-    gap: var(--space-xs);
+  /* Consent checkbox mobile improvements */
+  .consent-checkbox {
+    margin-bottom: var(--space-xl);
   }
+
+  .consent-label {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    gap: var(--space-sm);
+    align-items: flex-start;
+    text-align: left;
+  }
+
   .checkbox-custom {
-    width: 16px;
-    height: 16px;
-    margin-top: 1px;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .legal-link {
+    display: inline;
+    word-break: break-word;
   }
 
   /* Additional mobile improvements */
-  .nav-container {
-    padding: 0 var(--space-lg);
+  .hero {
+    padding: 80px 0 var(--space-2xl);
+    margin-top: 90px; /* Account for larger navbar */
   }
 
   .hero-eyebrow {
@@ -1253,15 +1283,32 @@ body {
     margin-bottom: var(--space-2xl);
   }
 
-  /* Section padding mobile */
+  /* Section padding and alignment mobile */
+  .method,
+  .pricing,
+  .testimonials,
+  .application-form,
+  .cta,
+  .problem {
+    padding: var(--space-2xl) var(--space-md);
+  }
+
   .method-container,
   .pricing-container,
-  .testimonials-container {
-    padding: var(--space-2xl) var(--space-lg);
+  .testimonials-container,
+  .problem-container {
+    padding: 0;
+    max-width: 100%;
   }
 
   .application-form .form-container {
-    padding: 0 var(--space-lg);
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .hero-container {
+    padding: 0 var(--space-md);
+    margin-top: 0;
   }
 
   /* Mobile typography improvements */
@@ -1274,11 +1321,22 @@ body {
     font-size: clamp(2.5rem, 8vw, 3.5rem);
   }
 
-  /* Mobile legal warning */
-  .pricing div[style*="background-color: var(--red)"] {
+  /* Mobile legal warning and investment note */
+  .pricing div[style*="background-color: var(--red)"],
+  .pricing div[style*="background-color: var(--black)"] {
     font-size: 0.8rem !important;
-    padding: var(--space-lg) !important;
-    margin: var(--space-lg) var(--space-sm) !important;
+    padding: var(--space-md) !important;
+    margin: var(--space-lg) 0 !important;
+    text-align: center !important;
+  }
+
+  .pricing div span[style*="font-size: 1.1rem"] {
+    font-size: 0.9rem !important;
+  }
+
+  .pricing div span[style*="font-size: 0.8rem"] {
+    font-size: 0.75rem !important;
+    line-height: 1.4 !important;
   }
 
   /* Mobile button improvements */
@@ -1315,15 +1373,9 @@ body {
     margin: var(--space-xs) var(--space-sm);
   }
 
-  /* Mobile sections spacing */
-  .problem,
-  .method,
-  .pricing,
-  .testimonials,
-  .application-form,
-  .cta {
-    padding-left: var(--space-lg);
-    padding-right: var(--space-lg);
+  /* Mobile footer improvements */
+  .footer {
+    padding: var(--space-2xl) var(--space-md) var(--space-lg);
   }
 }
     </style>
