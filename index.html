@@ -1053,75 +1053,50 @@ body {
   color: var(--yellow);
 }
 
-/* PACKAGE SELECTION STYLES - COMPACT */
-.package-selection-compact {
+/* PACKAGE SELECTION STYLES - INLINE */
+.package-selection-inline {
   display: flex;
-  gap: var(--space-sm);
+  gap: var(--space-lg);
   margin-top: var(--space-sm);
   flex-wrap: wrap;
+  justify-content: center;
 }
 
-.package-compact {
-  flex: 1;
-  min-width: 120px;
-}
-
-.package-radio-compact {
-  display: none;
-}
-
-.package-label-compact {
+.package-inline {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  background-color: var(--white);
-  border: 2px solid var(--gray-medium);
-  padding: var(--space-md) var(--space-sm);
+}
+
+.package-radio-inline {
+  width: 18px;
+  height: 18px;
+  margin-right: var(--space-sm);
+  accent-color: var(--red);
   cursor: pointer;
-  transition: all 0.2s ease;
+}
+
+.package-label-inline {
   font-family: var(--font-brutal);
-  text-align: center;
-  position: relative;
-}
-
-.package-label-compact:hover {
-  border-color: var(--red);
-  transform: translate(-1px, -1px);
-  box-shadow: 1px 1px 0px var(--red);
-}
-
-.package-radio-compact:checked + .package-label-compact {
-  border-color: var(--red);
-  background-color: var(--red);
+  font-size: 0.9rem;
+  font-weight: 600;
   color: var(--white);
-  transform: translate(-1px, -1px);
-  box-shadow: 1px 1px 0px var(--black);
-}
-
-.package-name-compact {
-  font-size: 0.8rem;
-  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.2s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: var(--space-xs);
 }
 
-.package-price-compact {
-  font-size: 1.1rem;
-  font-weight: 900;
-  font-family: var(--font-mono);
-  color: var(--red);
+.package-label-inline:hover {
+  color: var(--yellow);
 }
 
-.package-radio-compact:checked + .package-label-compact .package-price-compact {
-  color: var(--white);
+.featured-inline .package-label-inline {
+  color: var(--green);
+  font-weight: 700;
 }
 
-.package-badge-compact {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  font-size: 0.9rem;
+.featured-inline .package-label-inline:hover {
+  color: var(--yellow);
 }
 
 /* CTA */
@@ -1496,30 +1471,15 @@ body {
     padding: var(--space-2xl) var(--space-md) var(--space-lg);
   }
 
-  /* Mobile package selection - compact */
-  .package-selection-compact {
+  /* Mobile package selection - inline */
+  .package-selection-inline {
     flex-direction: column;
-    gap: var(--space-xs);
+    gap: var(--space-md);
+    align-items: flex-start;
   }
 
-  .package-compact {
-    min-width: unset;
-  }
-
-  .package-label-compact {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: var(--space-sm) var(--space-md);
-    text-align: left;
-  }
-
-  .package-name-compact {
-    font-size: 0.75rem;
-    margin-bottom: 0;
-  }
-
-  .package-price-compact {
-    font-size: 1rem;
+  .package-label-inline {
+    font-size: 0.85rem;
   }
 }
     </style>
@@ -1910,29 +1870,25 @@ body {
 
                     <div class="form-group full-width">
                         <label for="package" class="form-label">VALIDATION PACKAGE</label>
-                        <div class="package-selection-compact">
-                            <div class="package-compact">
-                                <input type="radio" id="validation-report" name="package" value="validation_report" class="package-radio-compact">
-                                <label for="validation-report" class="package-label-compact">
-                                    <span class="package-name-compact">Report</span>
-                                    <span class="package-price-compact">$97</span>
+                        <div class="package-selection-inline">
+                            <div class="package-inline">
+                                <input type="radio" id="validation-report" name="package" value="validation_report" class="package-radio-inline">
+                                <label for="validation-report" class="package-label-inline">
+                                    Report — $97
                                 </label>
                             </div>
 
-                            <div class="package-compact featured-compact">
-                                <input type="radio" id="full-validation" name="package" value="full_validation" class="package-radio-compact" checked>
-                                <label for="full-validation" class="package-label-compact">
-                                    <span class="package-name-compact">Full Validation</span>
-                                    <span class="package-price-compact">$497</span>
-                                    <span class="package-badge-compact">⭐</span>
+                            <div class="package-inline featured-inline">
+                                <input type="radio" id="full-validation" name="package" value="full_validation" class="package-radio-inline" checked>
+                                <label for="full-validation" class="package-label-inline">
+                                    Full Validation — $497 ⭐
                                 </label>
                             </div>
 
-                            <div class="package-compact">
-                                <input type="radio" id="mvp-validation" name="package" value="mvp_validation" class="package-radio-compact">
-                                <label for="mvp-validation" class="package-label-compact">
-                                    <span class="package-name-compact">MVP + Dev</span>
-                                    <span class="package-price-compact">Custom</span>
+                            <div class="package-inline">
+                                <input type="radio" id="mvp-validation" name="package" value="mvp_validation" class="package-radio-inline">
+                                <label for="mvp-validation" class="package-label-inline">
+                                    MVP + Dev — Custom
                                 </label>
                             </div>
                         </div>
@@ -2043,7 +1999,7 @@ body {
             }
 
             if (!packageInput) {
-                showError(document.querySelector('.package-selection-compact'), 'Select a validation package. Pick your poison.');
+                showError(document.querySelector('.package-selection-inline'), 'Select a validation package. Pick your poison.');
                 return;
             }
 
